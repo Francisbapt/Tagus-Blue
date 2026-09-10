@@ -1,0 +1,445 @@
+{
+  "project": {
+    "name": "TAGUS BLUE",
+    "tagline": "Start paddling where the Ocean begins",
+    "business_type": "SUP and kayak activities, lessons, rentals and guided experiences",
+    "location": {
+      "name": "Porto de Recreio de Oeiras",
+      "city": "Oeiras",
+      "country": "Portugal"
+    },
+    "language": "pt-PT",
+    "secondary_language": "en",
+    "contact": {
+      "email": "tagusbluesup@gmail.com",
+      "phone": "+351 968 672 195"
+    }
+  },
+
+  "brand": {
+    "style": "fresh, nautical, active, welcoming, modern and family-friendly",
+    "primary_colors": {
+      "ocean_blue": "#087EAA",
+      "deep_ocean": "#003B5C",
+      "lime_green": "#A8E85A",
+      "white": "#FFFFFF"
+    },
+    "typography": {
+      "headings": "bold handwritten/display style",
+      "body": "clean modern sans-serif"
+    },
+    "visual_direction": {
+      "main_image": "2.png",
+      "photography": "bright Portuguese coastline, Oeiras, families and friends kayaking and stand-up paddling",
+      "avoid": [
+        "corporate stock photography",
+        "dark luxury yacht aesthetics",
+        "overly extreme watersports imagery"
+      ]
+    }
+  },
+
+  "website": {
+    "navigation": [
+      "Início",
+      "Atividades",
+      "Alugueres",
+      "Experiências",
+      "Sobre nós",
+      "FAQ",
+      "Contactos"
+    ],
+    "primary_cta": {
+      "label": "RESERVAR AGORA",
+      "action": "open_booking"
+    },
+
+    "pages": {
+
+      "home": {
+        "hero": {
+          "headline": "Start paddling where the Ocean begins",
+          "subheadline": "Descobre o prazer de navegar em Oeiras ao teu ritmo.",
+          "location": "Porto de Recreio de Oeiras",
+          "primary_button": "Reservar agora",
+          "secondary_button": "Descobrir atividades",
+          "background_image": "2.png"
+        },
+
+        "intro": {
+          "headline": "O mar está mais perto do que imaginas.",
+          "text": "Na TAGUS BLUE podes experimentar SUP e kayak, aprender as bases da modalidade ou simplesmente sair para a água e aproveitar a costa de Oeiras. Sem complicações, com equipamento incluído e adequado a diferentes níveis."
+        },
+
+        "activities_preview": [
+          {
+            "name": "SUP & Kayak",
+            "title": "Aulas de Experimentação",
+            "description": "Uma primeira experiência para descobrir o prazer de remar.",
+            "price_from": "15€",
+            "duration": "1 hora",
+            "button": "Ver horários"
+          },
+          {
+            "name": "Aluguer",
+            "title": "Explora ao teu ritmo",
+            "description": "Aluga um SUP ou kayak e aproveita o mar sem pressas.",
+            "price_from": null,
+            "duration": null,
+            "button": "Ver alugueres"
+          },
+          {
+            "name": "Experiências",
+            "title": "Descobre a costa de Oeiras",
+            "description": "Passeios e experiências acompanhadas para quem quer conhecer o mar de uma forma diferente.",
+            "price_from": null,
+            "duration": null,
+            "button": "Descobrir experiências"
+          }
+        ],
+
+        "benefits": [
+          {
+            "icon": "leaf",
+            "title": "Contacto com a natureza"
+          },
+          {
+            "icon": "users",
+            "title": "Para todos os níveis"
+          },
+          {
+            "icon": "waves",
+            "title": "Equipamento incluído"
+          },
+          {
+            "icon": "smile",
+            "title": "Diversão garantida"
+          }
+        ],
+
+        "location_section": {
+          "headline": "Junto ao mar. A poucos minutos de ti.",
+          "location": "Porto de Recreio de Oeiras",
+          "map": true,
+          "directions_button": true
+        }
+      },
+
+      "activities": {
+        "headline": "Escolhe a tua forma de entrar na água.",
+        "categories": [
+          {
+            "id": "lessons",
+            "name": "Aulas & Experimentação",
+            "description": "Perfeito para quem nunca experimentou SUP ou kayak.",
+            "booking_enabled": true
+          },
+          {
+            "id": "rentals",
+            "name": "Alugueres",
+            "description": "Escolhe o equipamento, define a duração e vai explorar.",
+            "booking_enabled": true
+          },
+          {
+            "id": "experiences",
+            "name": "Experiências & Tours",
+            "description": "Experiências acompanhadas para descobrir a costa.",
+            "booking_enabled": true
+          }
+        ]
+      },
+
+      "rentals": {
+        "headline": "Aluga. Rema. Explora.",
+        "equipment": [
+          {
+            "id": "sup",
+            "name": "Stand Up Paddle",
+            "capacity": 1,
+            "booking_enabled": true
+          },
+          {
+            "id": "kayak_single",
+            "name": "Kayak individual",
+            "capacity": 1,
+            "booking_enabled": true
+          },
+          {
+            "id": "kayak_double",
+            "name": "Kayak duplo",
+            "capacity": 2,
+            "booking_enabled": true
+          }
+        ],
+        "duration_options": [
+          "1 hora",
+          "2 horas",
+          "meio dia"
+        ],
+        "pricing": {
+          "editable_by_admin": true,
+          "display_as": "A partir de"
+        }
+      },
+
+      "lessons": {
+        "headline": "SUP & Kayak — Aulas de Experimentação",
+        "description": "Uma experiência simples e divertida para descobrir o SUP ou kayak, aprender as bases e ganhar confiança na água.",
+        "default_session": {
+          "duration_minutes": 60,
+          "price_per_person": 15,
+          "schedule": [
+            "sábado",
+            "domingo"
+          ],
+          "time_window": "10:00-12:00"
+        },
+        "booking_enabled": true,
+        "session_capacity": {
+          "configurable": true
+        }
+      },
+
+      "experiences": {
+        "headline": "Mais do que uma atividade. Uma experiência no mar.",
+        "future_products": [
+          "Passeios de kayak",
+          "Passeios de SUP",
+          "Sunset paddles",
+          "Experiências para famílias",
+          "Grupos privados",
+          "Team building",
+          "Eventos"
+        ],
+        "booking_enabled": true
+      },
+
+      "about": {
+        "headline": "Porque TAGUS BLUE?",
+        "text": "Queremos tornar o mar mais acessível. Seja a tua primeira vez num SUP, um passeio de kayak com a família ou simplesmente uma forma diferente de passar uma manhã junto à água, a TAGUS BLUE existe para tornar essa experiência simples, segura e divertida."
+      },
+
+      "faq": {
+        "questions": [
+          {
+            "question": "Preciso de experiência?",
+            "answer": "Não. As nossas atividades de experimentação são pensadas também para quem nunca praticou."
+          },
+          {
+            "question": "O equipamento está incluído?",
+            "answer": "Sim. O equipamento necessário para a atividade selecionada está incluído."
+          },
+          {
+            "question": "O que devo levar?",
+            "answer": "Roupa confortável que possa molhar-se, proteção solar e água. O equipamento específico será disponibilizado pela TAGUS BLUE."
+          },
+          {
+            "question": "Posso reservar para crianças?",
+            "answer": "A disponibilidade depende da atividade, idade e condições do mar. O sistema deverá solicitar a idade dos participantes quando necessário."
+          },
+          {
+            "question": "E se estiver mau tempo?",
+            "answer": "A segurança está sempre em primeiro lugar. Caso as condições meteorológicas ou marítimas não permitam realizar a atividade, a TAGUS BLUE poderá reagendar ou cancelar a sessão de acordo com a política de cancelamento."
+          },
+          {
+            "question": "Posso cancelar uma reserva?",
+            "answer": "Aplicam-se as condições de cancelamento apresentadas durante o processo de reserva."
+          }
+        ]
+      },
+
+      "contact": {
+        "headline": "Fala connosco.",
+        "email": "tagusbluesup@gmail.com",
+        "phone": "+351 968 672 195",
+        "whatsapp": {
+          "enabled": true,
+          "number": "+351968672195"
+        },
+        "contact_form": {
+          "fields": [
+            "nome",
+            "email",
+            "telefone",
+            "assunto",
+            "mensagem"
+          ]
+        }
+      }
+    }
+  },
+
+  "booking_system": {
+
+    "flow": [
+      "select_activity",
+      "select_date",
+      "select_time",
+      "select_participants",
+      "select_equipment",
+      "customer_details",
+      "accept_terms",
+      "payment",
+      "confirmation"
+    ],
+
+    "booking_form": {
+      "required_fields": [
+        "nome",
+        "email",
+        "telefone",
+        "numero_de_participantes"
+      ],
+      "conditional_fields": [
+        "idade_dos_participantes",
+        "experiencia_anterior",
+        "equipamento_selecionado"
+      ],
+      "consents": [
+        "aceitacao_termos_e_condicoes",
+        "aceitacao_politica_de_cancelamento",
+        "consentimento_tratamento_de_dados"
+      ]
+    },
+
+    "availability": {
+      "real_time": true,
+      "prevent_overbooking": true,
+      "capacity_based_on_equipment": true,
+      "capacity_based_on_instructor": true,
+      "admin_can_block_dates": true,
+      "admin_can_block_times": true
+    },
+
+    "weather": {
+      "enabled": true,
+      "admin_override": true,
+      "allow_rescheduling": true,
+      "allow_cancellation": true,
+      "automatic_customer_notification": true
+    },
+
+    "payment": {
+      "online_payment": true,
+      "currency": "EUR",
+      "provider": "Stripe",
+      "payment_methods": [
+        "card",
+        "MB WAY",
+        "other_supported_local_methods"
+      ],
+      "payment_required_to_confirm_booking": true
+    },
+
+    "confirmation": {
+      "show_confirmation_page": true,
+      "send_customer_email": true,
+      "send_admin_email": true,
+      "include": [
+        "atividade",
+        "data",
+        "hora",
+        "participantes",
+        "localizacao",
+        "preco",
+        "instrucoes",
+        "politica_de_cancelamento"
+      ]
+    },
+
+    "calendar": {
+      "admin_dashboard": true,
+      "views": [
+        "day",
+        "week",
+        "month"
+      ],
+      "google_calendar_sync": true,
+      "export_ical": true
+    }
+  },
+
+  "admin_dashboard": {
+    "features": [
+      "view_bookings",
+      "create_booking",
+      "edit_booking",
+      "cancel_booking",
+      "block_availability",
+      "manage_equipment",
+      "manage_prices",
+      "manage_activities",
+      "manage_customers",
+      "view_revenue",
+      "send_customer_notifications"
+    ],
+
+    "booking_statuses": [
+      "pending",
+      "confirmed",
+      "completed",
+      "cancelled",
+      "refunded",
+      "rescheduled"
+    ]
+  },
+
+  "notifications": {
+    "booking_confirmation": true,
+    "booking_reminder": true,
+    "weather_alert": true,
+    "cancellation_notification": true,
+    "reschedule_notification": true,
+    "admin_new_booking_notification": true
+  },
+
+  "seo": {
+    "title": "TAGUS BLUE | SUP & Kayak em Oeiras",
+    "description": "Experimenta SUP e kayak no Porto de Recreio de Oeiras. Aulas, alugueres e experiências no mar para todos os níveis.",
+    "keywords": [
+      "SUP Oeiras",
+      "kayak Oeiras",
+      "aluguer kayak Oeiras",
+      "aluguer SUP Oeiras",
+      "stand up paddle Oeiras",
+      "atividades mar Oeiras",
+      "kayak Lisboa",
+      "SUP Lisboa"
+    ],
+    "local_seo": true
+  },
+
+  "legal": {
+    "pages_required": [
+      "Termos e Condições",
+      "Política de Privacidade",
+      "Política de Cancelamento",
+      "Informação de Segurança"
+    ],
+    "cookie_consent": true,
+    "gdpr_compliant": true,
+    "liability_waiver": {
+      "required_before_participation": true,
+      "digital_signature": true
+    }
+  },
+
+  "analytics": {
+    "google_analytics": true,
+    "conversion_tracking": true,
+    "track_events": [
+      "view_activity",
+      "start_booking",
+      "complete_booking",
+      "payment_completed",
+      "contact_click",
+      "whatsapp_click"
+    ]
+  },
+
+  "responsive_design": {
+    "mobile_first": true,
+    "sticky_booking_button_on_mobile": true,
+    "fast_loading": true
+  }
+}

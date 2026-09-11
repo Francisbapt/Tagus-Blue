@@ -154,6 +154,14 @@
   </footer>
 
   <script>
+    // Função auxiliar para extrair a tradução em português (ou a string caso não seja objeto)
+    const lang = 'pt';
+    const txt = (val) => {
+      if (!val) return '';
+      if (typeof val === 'object') return val[lang] || val['pt-PT'] || val['pt'] || '';
+      return val;
+    };
+
     fetch('./Tagusbluesup_site.json')
       .then(res => res.json())
       .then(data => {
@@ -164,27 +172,34 @@
         document.getElementById('nav-logo').innerText = p.name;
         const navMenu = document.getElementById('nav-menu');
         data.website.navigation.forEach(item => {
-          navMenu.innerHTML += `<li><a href="#">${item}</a></li>`;
+          const label = item.label ? txt(item.label) : txt(item);
+          const link = item.link || '#';
+          navMenu.innerHTML += `<li><a href="${link}">${label}</a></li>`;
         });
 
+        // Primary CTA Button
+        if (data.website.primary_cta) {
+          document.getElementById('hero-cta').innerText = txt(data.website.primary_cta.label);
+        }
+
         // Hero
-        document.getElementById('hero-title').innerText = w.home.hero.headline;
-        document.getElementById('hero-subtitle').innerText = w.home.hero.subheadline;
+        document.getElementById('hero-title').innerText = txt(w.home.hero.headline);
+        document.getElementById('hero-subtitle').innerText = txt(w.home.hero.subheadline);
 
         // Intro
-        document.getElementById('intro-title').innerText = w.home.intro.headline;
-        document.getElementById('intro-text').innerText = w.home.intro.text;
+        document.getElementById('intro-title').innerText = txt(w.home.intro.headline);
+        document.getElementById('intro-text').innerText = txt(w.home.intro.text);
 
         // Activities Preview
         const actGrid = document.getElementById('activities-grid');
         w.home.activities_preview.forEach(act => {
           actGrid.innerHTML += `
             <div class="card">
-              <h3>${act.title}</h3>
-              <p><strong>${act.name}</strong></p>
-              <p>${act.description}</p>
-              ${act.price_from ? `<p><strong>Preço:</strong> A partir de ${act.price_from}</p>` : ''}
-              <a href="#contact" class="btn btn-secondary">${act.button}</a>
+              <h3>${txt(act.title)}</h3>
+              <p><strong>${txt(act.name)}</strong></p>
+              <p>${txt(act.description)}</p>
+              ${act.price_from ? `<p><strong>Preço:</strong> ${txt(act.price_from)}</p>` : ''}
+              <a href="#contact" class="btn btn-secondary">${txt(act.button)}</a>
             </div>
           `;
         });
@@ -194,9 +209,9 @@
         w.rentals.equipment.forEach(eq => {
           rentGrid.innerHTML += `
             <div class="card">
-              <h3>${eq.name}</h3>
+              <h3>${txt(eq.name)}</h3>
               <p><strong>Lotação:</strong> ${eq.capacity} pessoa(s)</p>
-              <p><strong>Durações disponíveis:</strong> ${w.rentals.duration_options.join(', ')}</p>
+              <p><strong>Durações disponíveis:</strong> ${w.rentals.duration_options.map(d => txt(d)).join(', ')}</p>
             </div>
           `;
         });
@@ -206,7 +221,7 @@
         w.home.benefits.forEach(b => {
           benGrid.innerHTML += `
             <div class="card" style="text-align: center;">
-              <h3>✔ ${b.title}</h3>
+              <h3>✔ ${txt(b.title)}</h3>
             </div>
           `;
         });
@@ -216,8 +231,8 @@
         w.faq.questions.forEach(q => {
           faqList.innerHTML += `
             <div class="faq-item">
-              <h4>${q.question}</h4>
-              <p>${q.answer}</p>
+              <h4>${txt(q.question)}</h4>
+              <p>${txt(q.answer)}</p>
             </div>
           `;
         });

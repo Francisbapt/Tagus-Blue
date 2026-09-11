@@ -142,6 +142,7 @@
             "price_from": "15€",
             "duration": "1 hora",
             "button": { "pt": "Ver horários", "en": "View schedule" }
+            "image": "Aulas.jpeg"
           },
           {
             "id": "rentals_preview",
@@ -151,6 +152,7 @@
             "price_from": "A partir de 15€",
             "duration": "1 hora +",
             "button": { "pt": "Ver alugueres", "en": "View rentals" }
+            "image": "Aluguer.jpeg"
           },
           {
             "id": "experiences_preview",
@@ -160,6 +162,7 @@
             "price_from": null,
             "duration": null,
             "button": { "pt": "Descobrir experiências", "en": "Discover experiences" }
+            "image": "Experiências.jpeg"
           }
         ],
 

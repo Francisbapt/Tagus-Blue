@@ -265,8 +265,11 @@ html {
      // Atividades
         const actGrid = document.getElementById('activities-grid');
         pages.home.activities_preview.forEach(act => {
-          // Nome da imagem sem acentos (ex: experimentacao.jpeg)
-          const bgImage = act.image || 'experimentacao.jpeg';
+          // Garante que o caminho inclui a pasta images/
+          let bgImage = act.image || 'experimentacao.jpeg';
+          if (!bgImage.startsWith('images/') && !bgImage.startsWith('http')) {
+            bgImage = 'images/' + bgImage;
+          }
 
           actGrid.innerHTML += `
             <div class="card" style="

@@ -45,7 +45,7 @@
 
     /* Hero Banner */
     .hero {
-      background-color: var(--deep-ocean); /* Fallback caso a imagem falhe */
+      background-color: var(--deep-ocean);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -85,17 +85,20 @@
     }
     .card-content { padding: 20px; flex-grow: 1; }
     .card h3 { color: var(--ocean-blue); margin-top: 0; }
-    .card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
 
-    /* Estilo das FAQ's expansíveis (Accordion) */
+    /* Estilo das FAQ's com Setinha e Escondidas por Omissão */
     .faq-container { margin-top: 20px; }
     .faq-item {
       background: var(--white);
-      border-radius: 8px;
+      border-radius: 10px;
       margin-bottom: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       overflow: hidden;
       border: 1px solid #e2e8f0;
+      transition: border-color 0.2s;
+    }
+    .faq-item.active {
+      border-color: var(--ocean-blue);
     }
     .faq-question {
       width: 100%;
@@ -111,27 +114,35 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background-color 0.2s;
     }
     .faq-question:hover { background-color: #f8fafc; }
+    
+    /* Setinha (Chevron) */
     .faq-icon {
-      font-size: 1.2rem;
+      font-size: 0.9rem;
       transition: transform 0.3s ease;
       color: var(--ocean-blue);
+      display: inline-block;
+      margin-left: 10px;
     }
+    
+    /* Resposta totalmente escondida */
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
+      transition: max-height 0.35s ease-out, padding 0.35s ease-out;
       padding: 0 20px;
       color: #4a5568;
-      background: #fafafa;
+      background-color: #fafafa;
     }
+
+    /* Estado Ativo (Quando expandido) */
     .faq-item.active .faq-answer {
-      max-height: 200px;
-      padding: 15px 20px;
+      padding: 15px 20px 20px 20px;
     }
     .faq-item.active .faq-icon {
-      transform: rotate(45deg);
+      transform: rotate(180deg); /* Roda a setinha para cima */
     }
 
     form input, form textarea {
@@ -181,7 +192,7 @@
     <h2 class="section-title" id="experiences">Porquê a Tagus Blue?</h2>
     <div class="grid" id="benefits-grid"></div>
 
-    <!-- FAQ Expansível -->
+    <!-- FAQ Expansível com Setinha -->
     <h2 class="section-title" id="faq">Perguntas Frequentes (FAQ)</h2>
     <div class="faq-container" id="faq-list"></div>
 
@@ -298,17 +309,17 @@
           `;
         });
 
-        // FAQ Cartões Expansíveis (Accordion)
+        // FAQ com Setinha ▼ e Resposta Oculta por Omissão
         const faqList = document.getElementById('faq-list');
         pages.faq.questions.forEach((q, index) => {
           faqList.innerHTML += `
             <div class="faq-item" id="faq-item-${index}">
               <button class="faq-question" onclick="toggleFaq(${index})">
                 <span>${getPT(q.question)}</span>
-                <span class="faq-icon">+</span>
+                <span class="faq-icon">▼</span>
               </button>
-              <div class="faq-answer">
-                <p>${getPT(q.answer)}</p>
+              <div class="faq-answer" id="faq-answer-${index}">
+                <p style="margin: 0;">${getPT(q.answer)}</p>
               </div>
             </div>
           `;
@@ -325,10 +336,19 @@
       })
       .catch(err => console.error('Erro ao carregar o JSON:', err));
 
-    // Função para abrir/fechar o cartão da FAQ
+    // Função JS atualizada para expandir/recolher suavemente
     function toggleFaq(index) {
       const item = document.getElementById(`faq-item-${index}`);
-      item.classList.toggle('active');
+      const answer = document.getElementById(`faq-answer-${index}`);
+
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        answer.style.maxHeight = "0px";
+      } else {
+        item.classList.add('active');
+        // Calcula a altura exata do texto interno para abrir perfeitamente
+        answer.style.maxHeight = answer.scrollHeight + 35 + "px";
+      }
     }
   </script>
 

@@ -2,10 +2,21 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Tagus Blue</title>
+  <title>Tagus Blue - Dados JSON</title>
 </head>
 <body>
-  <h1>O site está online!</h1>
-  <p>Acede ao ficheiro JSON diretamente no endereço do teu ficheiro.</p>
+  <h1>Dados do Tagus Blue</h1>
+  <pre id="json-data">A carregar dados...</pre>
+
+  <script>
+    fetch('./Tagusbluesup_site.json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('json-data').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById('json-data').textContent = 'Erro ao carregar o JSON.';
+      });
+  </script>
 </body>
 </html>

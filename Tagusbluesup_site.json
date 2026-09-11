@@ -93,10 +93,10 @@
   "website": {
     "navigation": [
       { "label": { "pt": "Início", "en": "Home" }, "link": "#home" },
+      { "label": { "pt": "Sobre nós", "en": "About Us" }, "link": "#about" },
       { "label": { "pt": "Atividades", "en": "Activities" }, "link": "#activities" },
       { "label": { "pt": "Alugueres", "en": "Rentals" }, "link": "#rentals" },
       { "label": { "pt": "Experiências", "en": "Experiences" }, "link": "#experiences" },
-      { "label": { "pt": "Sobre nós", "en": "About Us" }, "link": "#about" },
       { "label": { "pt": "FAQ", "en": "FAQ" }, "link": "#faq" },
       { "label": { "pt": "Contactos", "en": "Contact" }, "link": "#contact" }
     ],

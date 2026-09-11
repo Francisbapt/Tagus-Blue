@@ -262,18 +262,26 @@ html {
         document.getElementById('intro-title').innerText = getPT(pages.home.intro.headline);
         document.getElementById('intro-text').innerText = getPT(pages.home.intro.text);
 
-        // Atividades
+       // Atividades
         const actGrid = document.getElementById('activities-grid');
         pages.home.activities_preview.forEach(act => {
+          // Lê a imagem dinâmica do JSON para cada cartão individual
+          const bgImage = act.image || 'Experimentação.jpeg';
+
           actGrid.innerHTML += `
-            <div class="card">
+            <div class="card" style="
+              background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${bgImage}');
+              background-size: cover;
+              background-position: center;
+              color: var(--white);
+            ">
               <div class="card-content">
-                <h3>${getPT(act.title)}</h3>
+                <h3 style="color: var(--lime-green);">${getPT(act.title)}</h3>
                 <p><strong>${act.name}</strong></p>
                 <p>${getPT(act.description)}</p>
                 ${act.price_from ? `<p><strong>Preço:</strong> ${act.price_from}</p>` : ''}
                 ${act.duration ? `<p><strong>Duração:</strong> ${act.duration}</p>` : ''}
-                <a href="#contact" class="btn btn-secondary">${getPT(act.button)}</a>
+                <a href="#contact" class="btn btn-primary" style="margin-top: 10px; display: inline-block;">${getPT(act.button)}</a>
               </div>
             </div>
           `;

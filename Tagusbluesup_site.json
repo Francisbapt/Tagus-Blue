@@ -141,7 +141,7 @@
             "description": { "pt": "Uma primeira experiência para descobrir o prazer de remar.", "en": "A first experience to discover the joy of paddling." },
             "price_from": "15€",
             "duration": "1 hora",
-            "button": { "pt": "Ver horários", "en": "View schedule" }
+            "button": { "pt": "Ver horários", "en": "View schedule" },
             "image": "Aulas.jpeg"
           },
           {
@@ -151,7 +151,7 @@
             "description": { "pt": "Aluga um kayak ou SUP no Tejo e aproveita o mar sem pressas.", "en": "Rent a kayak or SUP in Tejo and enjoy the sea without stress." },
             "price_from": "A partir de 15€",
             "duration": "1 hora +",
-            "button": { "pt": "Ver alugueres", "en": "View rentals" }
+            "button": { "pt": "Ver alugueres", "en": "View rentals" },
             "image": "Aluguer.jpeg"
           },
           {
@@ -161,7 +161,7 @@
             "description": { "pt": "Passeios e experiências acompanhadas para quem quer conhecer o Tejo de uma forma diferente.", "en": "Guided tours and experiences to discover the Tejo river from a different view." },
             "price_from": null,
             "duration": null,
-            "button": { "pt": "Descobrir experiências", "en": "Discover experiences" }
+            "button": { "pt": "Descobrir experiências", "en": "Discover experiences" },
             "image": "Experiências.jpeg"
           }
         ],

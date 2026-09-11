@@ -15,20 +15,20 @@
     }
 
     /* Corrige o Auto-Scroll para não tapar os títulos com o menu fixo */
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px; 
-    }
+    /* Garante que o scroll no elemento raiz considera a barra fixa */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
 
-    * { box-sizing: border-box; }
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-gray);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+/* Adiciona margem de scroll em cada título de secção */
+.section-title { 
+  color: var(--deep-ocean); 
+  border-bottom: 3px solid var(--ocean-blue); 
+  padding-bottom: 5px; 
+  margin-top: 40px; 
+  scroll-margin-top: 90px; /* Evita que o menu tape o título */
+}
 
     nav {
       background: var(--deep-ocean);

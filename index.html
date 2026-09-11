@@ -154,96 +154,135 @@
   </footer>
 
   <script>
-    // Função auxiliar para extrair a tradução em português (ou a string caso não seja objeto)
-    const lang = 'pt';
-    const txt = (val) => {
-      if (!val) return '';
-      if (typeof val === 'object') return val[lang] || val['pt-PT'] || val['pt'] || '';
-      return val;
-    };
+    // Função ultra-defensiva para garantir que NUNCA é retornado "[object Object]"
+    function unwrap(val) {
+      if (val === null || val === undefined) return '';
+      if (typeof val === 'string' || typeof val === 'number') return val;
+      
+      if (Array.isArray(val)) {
+        return val.map(unwrap).join(', ');
+      }
+      
+      if (typeof val === 'object') {
+        // Tenta extrair a linguagem em Português
+        if (val.pt) return unwrap(val.pt);
+        if (val['pt-PT']) return unwrap(val['pt-PT']);
+        if (val.label) return unwrap(val.label);
+        if (val.name) return unwrap(val.name);
+        if (val.title) return unwrap(val.title);
+        if (val.text) return unwrap(val.text);
+        if (val.en) return unwrap(val.en);
+        
+        // Se nenhuma das chaves bater certo, pega no primeiro valor de texto que encontrar
+        const firstValue = Object.values(val)[0];
+        if (firstValue) return unwrap(firstValue);
+      }
+      
+      return '';
+    }
 
     fetch('./Tagusbluesup_site.json')
       .then(res => res.json())
       .then(data => {
-        const p = data.project;
-        const w = data.website.pages;
+        const p = data.project || {};
+        const w = (data.website && data.website.pages) ? data.website.pages : {};
 
         // Header & Nav
-        document.getElementById('nav-logo').innerText = p.name;
+        if (p.name) document.getElementById('nav-logo').innerText = unwrap(p.name);
+        
         const navMenu = document.getElementById('nav-menu');
-        data.website.navigation.forEach(item => {
-          const label = item.label ? txt(item.label) : txt(item);
-          const link = item.link || '#';
+        const navItems = data.website?.navigation || [];
+        navItems.forEach(item => {
+          const label = unwrap(item);
+          const link = (typeof item === 'object' && item.link) ? item.link : '#';
           navMenu.innerHTML += `<li><a href="${link}">${label}</a></li>`;
         });
 
-        // Primary CTA Button
-        if (data.website.primary_cta) {
-          document.getElementById('hero-cta').innerText = txt(data.website.primary_cta.label);
+        // Primary CTA
+        if (data.website?.primary_cta) {
+          document.getElementById('hero-cta').innerText = unwrap(data.website.primary_cta);
         }
 
         // Hero
-        document.getElementById('hero-title').innerText = txt(w.home.hero.headline);
-        document.getElementById('hero-subtitle').innerText = txt(w.home.hero.subheadline);
+        if (w.home?.hero) {
+          document.getElementById('hero-title').innerText = unwrap(w.home.hero.headline);
+          document.getElementById('hero-subtitle').innerText = unwrap(w.home.hero.subheadline);
+        }
 
         // Intro
-        document.getElementById('intro-title').innerText = txt(w.home.intro.headline);
-        document.getElementById('intro-text').innerText = txt(w.home.intro.text);
+        if (w.home?.intro) {
+          document.getElementById('intro-title').innerText = unwrap(w.home.intro.headline);
+          document.getElementById('intro-text').innerText = unwrap(w.home.intro.text);
+        }
 
         // Activities Preview
         const actGrid = document.getElementById('activities-grid');
-        w.home.activities_preview.forEach(act => {
+        const activities = w.home?.activities_preview || [];
+        activities.forEach(act => {
+          const title = unwrap(act.title);
+          const name = unwrap(act.name);
+          const desc = unwrap(act.description);
+          const price = unwrap(act.price_from);
+          const btnText = unwrap(act.button) || 'Saber mais';
+
           actGrid.innerHTML += `
             <div class="card">
-              <h3>${txt(act.title)}</h3>
-              <p><strong>${txt(act.name)}</strong></p>
-              <p>${txt(act.description)}</p>
-              ${act.price_from ? `<p><strong>Preço:</strong> ${txt(act.price_from)}</p>` : ''}
-              <a href="#contact" class="btn btn-secondary">${txt(act.button)}</a>
+              ${title ? `<h3>${title}</h3>` : ''}
+              ${name ? `<p><strong>${name}</strong></p>` : ''}
+              <p>${desc}</p>
+              ${price ? `<p><strong>Preço:</strong> A partir de ${price}</p>` : ''}
+              <a href="#contact" class="btn btn-secondary">${btnText}</a>
             </div>
           `;
         });
 
         // Rentals
         const rentGrid = document.getElementById('rentals-grid');
-        w.rentals.equipment.forEach(eq => {
+        const rentals = w.rentals?.equipment || [];
+        const durations = unwrap(w.rentals?.duration_options);
+        
+        rentals.forEach(eq => {
           rentGrid.innerHTML += `
             <div class="card">
-              <h3>${txt(eq.name)}</h3>
-              <p><strong>Lotação:</strong> ${eq.capacity} pessoa(s)</p>
-              <p><strong>Durações disponíveis:</strong> ${w.rentals.duration_options.map(d => txt(d)).join(', ')}</p>
+              <h3>${unwrap(eq.name)}</h3>
+              <p><strong>Lotação:</strong> ${unwrap(eq.capacity)} pessoa(s)</p>
+              ${durations ? `<p><strong>Durações disponíveis:</strong> ${durations}</p>` : ''}
             </div>
           `;
         });
 
         // Benefits
         const benGrid = document.getElementById('benefits-grid');
-        w.home.benefits.forEach(b => {
+        const benefits = w.home?.benefits || [];
+        benefits.forEach(b => {
           benGrid.innerHTML += `
             <div class="card" style="text-align: center;">
-              <h3>✔ ${txt(b.title)}</h3>
+              <h3>✔ ${unwrap(b.title || b)}</h3>
             </div>
           `;
         });
 
         // FAQ
         const faqList = document.getElementById('faq-list');
-        w.faq.questions.forEach(q => {
+        const faqs = w.faq?.questions || [];
+        faqs.forEach(q => {
           faqList.innerHTML += `
             <div class="faq-item">
-              <h4>${txt(q.question)}</h4>
-              <p>${txt(q.answer)}</p>
+              <h4>${unwrap(q.question)}</h4>
+              <p>${unwrap(q.answer)}</p>
             </div>
           `;
         });
 
         // Contact Info
-        document.getElementById('contact-info').innerHTML = `
-          <h3>Fale connosco</h3>
-          <p><strong>Local:</strong> ${p.location.name}, ${p.location.city}</p>
-          <p><strong>Email:</strong> ${p.contact.email}</p>
-          <p><strong>Telefone/WhatsApp:</strong> ${p.contact.phone}</p>
-        `;
+        if (p.location && p.contact) {
+          document.getElementById('contact-info').innerHTML = `
+            <h3>Fale connosco</h3>
+            <p><strong>Local:</strong> ${unwrap(p.location.name)}, ${unwrap(p.location.city)}</p>
+            <p><strong>Email:</strong> ${unwrap(p.contact.email)}</p>
+            <p><strong>Telefone/WhatsApp:</strong> ${unwrap(p.contact.phone)}</p>
+          `;
+        }
       })
       .catch(err => {
         console.error('Erro ao carregar o JSON:', err);

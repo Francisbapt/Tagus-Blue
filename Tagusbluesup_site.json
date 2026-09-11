@@ -119,7 +119,7 @@
           "location": "Porto de Recreio de Oeiras",
           "primary_button": { "pt": "Reservar agora", "en": "Book now" },
           "secondary_button": { "pt": "Descobrir atividades", "en": "Discover activities" },
-          "background_image": "2.png"
+          "background_image": "images/1.jpg"
         },
 
         "intro": {

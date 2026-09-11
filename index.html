@@ -2,21 +2,168 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Tagus Blue - Dados JSON</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tagus Blue - Reservas & Configurações</title>
+  <style>
+    :root {
+      --primary: #0066cc;
+      --bg: #f4f7f9;
+      --card-bg: #ffffff;
+      --text: #2c3e50;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--primary);
+      border-bottom: 2px solid #eef2f5;
+      padding-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #e1f0ff;
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin: 4px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background-color: var(--primary);
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+      box-sizing: border-box;
+    }
+
+    .btn:hover {
+      background-color: #0052a3;
+    }
+
+    ul {
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-  <h1>Dados do Tagus Blue</h1>
-  <pre id="json-data">A carregar dados...</pre>
+
+  <div class="container">
+    <header>
+      <h1>Tagus Blue</h1>
+      <p>Detalhes do Serviço e Configurações de Reserva</p>
+    </header>
+
+    <div class="grid" id="app">
+      <div class="card"><p>A carregar dados...</p></div>
+    </div>
+  </div>
 
   <script>
+    // Procura e carrega o ficheiro JSON
     fetch('./Tagusbluesup_site.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error("Erro ao carregar o ficheiro JSON");
+        return response.json();
+      })
       .then(data => {
-        document.getElementById('json-data').textContent = JSON.stringify(data, null, 2);
+        const app = document.getElementById('app');
+        app.innerHTML = ''; // Limpa a mensagem de carregamento
+
+        // 1. Bloco de Pagamentos (payment)
+        if (data.payment) {
+          const methods = data.payment.payment_methods ? data.payment.payment_methods.map(m => `<span class="badge">${m}</span>`).join('') : 'N/A';
+          app.innerHTML += `
+            <div class="card">
+              <h2>💳 Pagamento</h2>
+              <p><strong>Moeda:</strong> ${data.payment.currency || 'EUR'}</p>
+              <p><strong>Plataforma:</strong> ${data.payment.provider || 'N/A'}</p>
+              <p><strong>Métodos aceites:</strong></p>
+              <div>${methods}</div>
+              <a href="#" class="btn">Confirmar Reserva</a>
+            </div>
+          `;
+        }
+
+        // 2. Bloco de Confirmação (confirmation)
+        if (data.confirmation) {
+          const items = data.confirmation.include ? data.confirmation.include.map(item => `<li>${item}</li>`).join('') : '';
+          app.innerHTML += `
+            <div class="card">
+              <h2>📋 Informações Incluídas</h2>
+              <ul>${items}</ul>
+            </div>
+          `;
+        }
+
+        // 3. Bloco do Calendário (calendar)
+        if (data.calendar) {
+          const views = data.calendar.views ? data.calendar.views.map(v => `<span class="badge">${v}</span>`).join('') : '';
+          app.innerHTML += `
+            <div class="card">
+              <h2>📅 Calendário & Vistas</h2>
+              <p><strong>Gestão ativa:</strong> ${data.calendar.admin_dashboard ? 'Sim' : 'Não'}</p>
+              <p><strong>Visualizações disponíveis:</strong></p>
+              <div>${views}</div>
+            </div>
+          `;
+        }
       })
       .catch(error => {
-        document.getElementById('json-data').textContent = 'Erro ao carregar o JSON.';
+        document.getElementById('app').innerHTML = `<div class="card"><p style="color:red;">Ocorreu um erro ao carregar os dados. Verifica se o ficheiro JSON está na raiz do repositório.</p></div>`;
+        console.error(error);
       });
   </script>
+
 </body>
 </html>

@@ -5,14 +5,60 @@
     "business_type": "SUP and kayak activities, lessons, rentals and guided experiences",
     "location": {
       "name": "Porto de Recreio de Oeiras",
+      "address": "Porto de Recreio de Oeiras, 2780-267 Oeiras",
       "city": "Oeiras",
-      "country": "Portugal"
+      "region": "Lisboa",
+      "country": "Portugal",
+      "coordinates": {
+        "latitude": 38.6756,
+        "longitude": -9.3144
+      }
     },
-    "language": "pt-PT",
-    "secondary_language": "en",
+    "default_language": "pt-PT",
+    "supported_languages": ["pt-PT", "en"],
     "contact": {
       "email": "tagusbluesup@gmail.com",
-      "phone": "+351 968 672 195"
+      "phone": "+351 968 672 195",
+      "whatsapp": "+351968672195"
+    }
+  },
+
+  "business_operations": {
+    "rnaat_licence": "RNAAT nº XXX/YYYY",
+    "insurance": {
+      "personal_accident_included": true,
+      "liability_insurance_included": true
+    },
+    "opening_hours": {
+      "high_season": {
+        "months": "Maio a Outubro",
+        "schedule": "Segunda a Domingo: 09:00 - 19:00"
+      },
+      "low_season": {
+        "months": "Novembro a Abril",
+        "schedule": "Quarta a Domingo: 10:00 - 17:00 (Sujeito a marcação prévia)"
+      }
+    },
+    "requirements": {
+      "must_know_how_to_swim": true,
+      "min_age_sup": 10,
+      "min_age_kayak_double": 6,
+      "weight_limit_sup_kg": 110,
+      "minors_require_guardian_consent": true
+    }
+  },
+
+  "inventory_management": {
+    "turnaround_buffer_minutes": 15,
+    "max_instructor_ratio": {
+      "sup_lessons": "1:8",
+      "kayak_tours": "1:10"
+    },
+    "fleet": {
+      "sup_boards": 15,
+      "kayak_single": 8,
+      "kayak_double": 6,
+      "life_vests_total": 45
     }
   },
 
@@ -30,95 +76,114 @@
     },
     "visual_direction": {
       "main_image": "2.png",
-      "photography": "bright Portuguese coastline, Oeiras, families and friends kayaking and stand-up paddling",
+      "photography": "bright Portuguese coastline, Oeiras harbor, Tejo river, families and friends kayaking and stand-up paddling",
       "avoid": [
         "corporate stock photography",
         "dark luxury yacht aesthetics",
         "overly extreme watersports imagery"
       ]
+    },
+    "social_media": {
+      "instagram": "https://instagram.com/tagusblue",
+      "facebook": "https://facebook.com/tagusblue",
+      "google_my_business": "https://maps.google.com/?q=Porto+de+Recreio+de+Oeiras"
     }
   },
 
   "website": {
     "navigation": [
-      "Início",
-      "Atividades",
-      "Alugueres",
-      "Experiências",
-      "Sobre nós",
-      "FAQ",
-      "Contactos"
+      { "label": { "pt": "Início", "en": "Home" }, "link": "#home" },
+      { "label": { "pt": "Atividades", "en": "Activities" }, "link": "#activities" },
+      { "label": { "pt": "Alugueres", "en": "Rentals" }, "link": "#rentals" },
+      { "label": { "pt": "Experiências", "en": "Experiences" }, "link": "#experiences" },
+      { "label": { "pt": "Sobre nós", "en": "About Us" }, "link": "#about" },
+      { "label": { "pt": "FAQ", "en": "FAQ" }, "link": "#faq" },
+      { "label": { "pt": "Contactos", "en": "Contact" }, "link": "#contact" }
     ],
     "primary_cta": {
-      "label": "RESERVAR AGORA",
+      "label": { "pt": "RESERVAR AGORA", "en": "BOOK NOW" },
       "action": "open_booking"
     },
 
     "pages": {
-
       "home": {
         "hero": {
-          "headline": "Start paddling where the Ocean begins",
-          "subheadline": "Descobre o prazer de navegar em Oeiras ao teu ritmo.",
+          "headline": {
+            "pt": "Start paddling where the Ocean begins",
+            "en": "Start paddling where the Ocean begins"
+          },
+          "subheadline": {
+            "pt": "Descobre o prazer de remar em kayak e SUP no Tejo e no Porto de Recreio de Oeiras.",
+            "en": "Discover the joy of kayaking and SUP paddling in Tejo and Oeiras harbor at your own pace."
+          },
           "location": "Porto de Recreio de Oeiras",
-          "primary_button": "Reservar agora",
-          "secondary_button": "Descobrir atividades",
+          "primary_button": { "pt": "Reservar agora", "en": "Book now" },
+          "secondary_button": { "pt": "Descobrir atividades", "en": "Discover activities" },
           "background_image": "2.png"
         },
 
         "intro": {
-          "headline": "O mar está mais perto do que imaginas.",
-          "text": "Na TAGUS BLUE podes experimentar SUP e kayak, aprender as bases da modalidade ou simplesmente sair para a água e aproveitar a costa de Oeiras. Sem complicações, com equipamento incluído e adequado a diferentes níveis."
+          "headline": {
+            "pt": "O mar está mais perto do que imaginas.",
+            "en": "The sea is closer than you think."
+          },
+          "text": {
+            "pt": "Na TAGUS BLUE podes experimentar SUP e kayak no Tejo, aprender as bases da modalidade ou simplesmente sair para a água a partir do Porto de Recreio de Oeiras. Sem complicações, com equipamento incluído e adequado a diferentes níveis.",
+            "en": "At TAGUS BLUE you can try SUP and kayak in Tejo river, learn the basics or simply hit the water from Porto de Recreio de Oeiras. Hassle-free, with all equipment included and suitable for all levels."
+          }
         },
 
         "activities_preview": [
           {
+            "id": "lessons_preview",
             "name": "SUP & Kayak",
-            "title": "Aulas de Experimentação",
-            "description": "Uma primeira experiência para descobrir o prazer de remar.",
+            "title": { "pt": "Aulas de Experimentação", "en": "Trial Lessons" },
+            "description": { "pt": "Uma primeira experiência para descobrir o prazer de remar.", "en": "A first experience to discover the joy of paddling." },
             "price_from": "15€",
             "duration": "1 hora",
-            "button": "Ver horários"
+            "button": { "pt": "Ver horários", "en": "View schedule" }
           },
           {
+            "id": "rentals_preview",
             "name": "Aluguer",
-            "title": "Explora ao teu ritmo",
-            "description": "Aluga um SUP ou kayak e aproveita o mar sem pressas.",
-            "price_from": null,
-            "duration": null,
-            "button": "Ver alugueres"
+            "title": { "pt": "Explora ao teu ritmo", "en": "Explore at your own pace" },
+            "description": { "pt": "Aluga um kayak ou SUP no Tejo e aproveita o mar sem pressas.", "en": "Rent a kayak or SUP in Tejo and enjoy the sea without stress." },
+            "price_from": "A partir de 15€",
+            "duration": "1 hora +",
+            "button": { "pt": "Ver alugueres", "en": "View rentals" }
           },
           {
+            "id": "experiences_preview",
             "name": "Experiências",
-            "title": "Descobre a costa de Oeiras",
-            "description": "Passeios e experiências acompanhadas para quem quer conhecer o mar de uma forma diferente.",
+            "title": { "pt": "Descobre a costa de Oeiras", "en": "Discover the Oeiras coast" },
+            "description": { "pt": "Passeios e experiências acompanhadas para quem quer conhecer o Tejo de uma forma diferente.", "en": "Guided tours and experiences to discover the Tejo river from a different view." },
             "price_from": null,
             "duration": null,
-            "button": "Descobrir experiências"
+            "button": { "pt": "Descobrir experiências", "en": "Discover experiences" }
           }
         ],
 
         "benefits": [
           {
             "icon": "leaf",
-            "title": "Contacto com a natureza"
+            "title": { "pt": "Contacto com a natureza", "en": "Connection with nature" }
           },
           {
             "icon": "users",
-            "title": "Para todos os níveis"
+            "title": { "pt": "Para todos os níveis", "en": "For all skill levels" }
           },
           {
             "icon": "waves",
-            "title": "Equipamento incluído"
+            "title": { "pt": "Equipamento incluído", "en": "Equipment included" }
           },
           {
             "icon": "smile",
-            "title": "Diversão garantida"
+            "title": { "pt": "Diversão garantida", "en": "Guaranteed fun" }
           }
         ],
 
         "location_section": {
-          "headline": "Junto ao mar. A poucos minutos de ti.",
+          "headline": { "pt": "Junto ao mar. A poucos minutos de ti.", "en": "By the sea. Just minutes away." },
           "location": "Porto de Recreio de Oeiras",
           "map": true,
           "directions_button": true
@@ -126,56 +191,59 @@
       },
 
       "activities": {
-        "headline": "Escolhe a tua forma de entrar na água.",
+        "headline": { "pt": "Escolhe a tua forma de entrar na água.", "en": "Choose your way into the water." },
         "categories": [
           {
             "id": "lessons",
-            "name": "Aulas & Experimentação",
-            "description": "Perfeito para quem nunca experimentou SUP ou kayak.",
+            "name": { "pt": "Aulas & Experimentação", "en": "Lessons & Trial Sessions" },
+            "description": { "pt": "Perfeito para quem nunca experimentou SUP ou kayak no Tejo.", "en": "Perfect for beginners trying SUP or kayak for the first time." },
             "booking_enabled": true
           },
           {
             "id": "rentals",
-            "name": "Alugueres",
-            "description": "Escolhe o equipamento, define a duração e vai explorar.",
+            "name": { "pt": "Alugueres", "en": "Equipment Rentals" },
+            "description": { "pt": "Escolhe o equipamento no Porto de Recreio de Oeiras, define a duração e vai explorar.", "en": "Pick your gear at Oeiras harbor, choose duration and start exploring." },
             "booking_enabled": true
           },
           {
             "id": "experiences",
-            "name": "Experiências & Tours",
-            "description": "Experiências acompanhadas para descobrir a costa.",
+            "name": { "pt": "Experiências & Tours", "en": "Experiences & Tours" },
+            "description": { "pt": "Passeios guiados de kayak e SUP para descobrir o Tejo e a linha de Oeiras.", "en": "Guided kayak and SUP tours to explore the Tejo river and Oeiras coastline." },
             "booking_enabled": true
           }
         ]
       },
 
       "rentals": {
-        "headline": "Aluga. Rema. Explora.",
+        "headline": { "pt": "Aluga. Rema. Explora.", "en": "Rent. Paddle. Explore." },
+        "seo_text": {
+          "pt": "Serviço completo de aluguer de kayak e SUP no Tejo com partida direta do Porto de Recreio de Oeiras.",
+          "en": "Full kayak and SUP rental service in Tejo starting directly from Porto de Recreio de Oeiras."
+        },
         "equipment": [
           {
             "id": "sup",
-            "name": "Stand Up Paddle",
+            "name": { "pt": "Stand Up Paddle (SUP)", "en": "Stand Up Paddle (SUP)" },
             "capacity": 1,
+            "max_weight_kg": 110,
             "booking_enabled": true
           },
           {
             "id": "kayak_single",
-            "name": "Kayak individual",
+            "name": { "pt": "Kayak individual", "en": "Single Kayak" },
             "capacity": 1,
+            "max_weight_kg": 130,
             "booking_enabled": true
           },
           {
             "id": "kayak_double",
-            "name": "Kayak duplo",
+            "name": { "pt": "Kayak duplo", "en": "Double Kayak" },
             "capacity": 2,
+            "max_weight_kg": 220,
             "booking_enabled": true
           }
         ],
-        "duration_options": [
-          "1 hora",
-          "2 horas",
-          "meio dia"
-        ],
+        "duration_options": ["1 hora", "2 horas", "meio dia"],
         "pricing": {
           "editable_by_admin": true,
           "display_as": "A partir de"
@@ -183,27 +251,28 @@
       },
 
       "lessons": {
-        "headline": "SUP & Kayak — Aulas de Experimentação",
-        "description": "Uma experiência simples e divertida para descobrir o SUP ou kayak, aprender as bases e ganhar confiança na água.",
+        "headline": { "pt": "SUP & Kayak — Aulas de Experimentação", "en": "SUP & Kayak — Trial Lessons" },
+        "description": {
+          "pt": "Uma experiência simples e divertida para aprender as bases de kayak e SUP no Porto de Recreio de Oeiras e ganhar confiança na água.",
+          "en": "A simple and fun experience to learn kayak and SUP basics at Oeiras harbor and build confidence in the water."
+        },
         "default_session": {
           "duration_minutes": 60,
           "price_per_person": 15,
-          "schedule": [
-            "sábado",
-            "domingo"
-          ],
+          "schedule": ["sábado", "domingo"],
           "time_window": "10:00-12:00"
         },
         "booking_enabled": true,
         "session_capacity": {
-          "configurable": true
+          "configurable": true,
+          "max_participants_per_instructor": 8
         }
       },
 
       "experiences": {
-        "headline": "Mais do que uma atividade. Uma experiência no mar.",
+        "headline": { "pt": "Mais do que uma atividade. Uma experiência no mar.", "en": "More than an activity. An ocean experience." },
         "future_products": [
-          "Passeios de kayak",
+          "Passeios de kayak no Tejo",
           "Passeios de SUP",
           "Sunset paddles",
           "Experiências para famílias",
@@ -215,41 +284,44 @@
       },
 
       "about": {
-        "headline": "Porque TAGUS BLUE?",
-        "text": "Queremos tornar o mar mais acessível. Seja a tua primeira vez num SUP, um passeio de kayak com a família ou simplesmente uma forma diferente de passar uma manhã junto à água, a TAGUS BLUE existe para tornar essa experiência simples, segura e divertida."
+        "headline": { "pt": "Porquê a TAGUS BLUE?", "en": "Why TAGUS BLUE?" },
+        "text": {
+          "pt": "Queremos tornar o mar mais acessível. Seja a tua primeira vez num SUP, um passeio de kayak no Tejo com a família ou simplesmente uma forma diferente de passar o dia no Porto de Recreio de Oeiras, a TAGUS BLUE existe para tornar essa experiência simples, segura e divertida.",
+          "en": "We want to make the ocean accessible to everyone. Whether it's your first time on a SUP, a family kayak trip in Tejo or just a fun day at Oeiras harbor, TAGUS BLUE makes it simple, safe and enjoyable."
+        }
       },
 
       "faq": {
         "questions": [
           {
-            "question": "Preciso de experiência?",
-            "answer": "Não. As nossas atividades de experimentação são pensadas também para quem nunca praticou."
+            "question": { "pt": "Preciso de experiência?", "en": "Do I need prior experience?" },
+            "answer": { "pt": "Não. As nossas atividades de experimentação de kayak e SUP são pensadas para quem nunca praticou.", "en": "No. Our trial sessions are designed for absolute beginners." }
           },
           {
-            "question": "O equipamento está incluído?",
-            "answer": "Sim. O equipamento necessário para a atividade selecionada está incluído."
+            "question": { "pt": "É obrigatório saber nadar?", "en": "Do I need to know how to swim?" },
+            "answer": { "pt": "Sim, por razões de segurança é requisito essencial saber nadar.", "en": "Yes, for safety reasons knowing how to swim is mandatory." }
           },
           {
-            "question": "O que devo levar?",
-            "answer": "Roupa confortável que possa molhar-se, proteção solar e água. O equipamento específico será disponibilizado pela TAGUS BLUE."
+            "question": { "pt": "O equipamento está incluído?", "en": "Is equipment included?" },
+            "answer": { "pt": "Sim. Prancha/kayak, pagaia, colete de salvação e seguro estão incluídos.", "en": "Yes. Board/kayak, paddle, life jacket, and insurance are included." }
           },
           {
-            "question": "Posso reservar para crianças?",
-            "answer": "A disponibilidade depende da atividade, idade e condições do mar. O sistema deverá solicitar a idade dos participantes quando necessário."
+            "question": { "pt": "O que devo levar?", "en": "What should I bring?" },
+            "answer": { "pt": "Roupa confortável que possa molhar-se, fato de banho, proteção solar, toalha e água.", "en": "Comfortable swimwear/clothes that can get wet, sunscreen, towel, and water." }
           },
           {
-            "question": "E se estiver mau tempo?",
-            "answer": "A segurança está sempre em primeiro lugar. Caso as condições meteorológicas ou marítimas não permitam realizar a atividade, a TAGUS BLUE poderá reagendar ou cancelar a sessão de acordo com a política de cancelamento."
+            "question": { "pt": "Posso reservar para crianças?", "en": "Can I book for children?" },
+            "answer": { "pt": "Sim. Kayak duplo a partir dos 6 anos (acompanhadas por adulto) e SUP a partir dos 10 anos.", "en": "Yes. Double kayak from age 6 (with adult) and SUP from age 10." }
           },
           {
-            "question": "Posso cancelar uma reserva?",
-            "answer": "Aplicam-se as condições de cancelamento apresentadas durante o processo de reserva."
+            "question": { "pt": "E se estiver mau tempo?", "en": "What if weather conditions are bad?" },
+            "answer": { "pt": "A segurança está em primeiro lugar. Se o vento ou estado do Tejo não permitirem a atividade, reagendamos ou reembolsamos.", "en": "Safety comes first. If weather or water conditions prevent the activity, we reschedule or issue a refund." }
           }
         ]
       },
 
       "contact": {
-        "headline": "Fala connosco.",
+        "headline": { "pt": "Fala connosco.", "en": "Get in touch." },
         "email": "tagusbluesup@gmail.com",
         "phone": "+351 968 672 195",
         "whatsapp": {
@@ -257,20 +329,13 @@
           "number": "+351968672195"
         },
         "contact_form": {
-          "fields": [
-            "nome",
-            "email",
-            "telefone",
-            "assunto",
-            "mensagem"
-          ]
+          "fields": ["nome", "email", "telefone", "assunto", "mensagem"]
         }
       }
     }
   },
 
   "booking_system": {
-
     "flow": [
       "select_activity",
       "select_date",
@@ -278,7 +343,7 @@
       "select_participants",
       "select_equipment",
       "customer_details",
-      "accept_terms",
+      "accept_terms_and_waiver",
       "payment",
       "confirmation"
     ],
@@ -292,12 +357,13 @@
       ],
       "conditional_fields": [
         "idade_dos_participantes",
-        "experiencia_anterior",
-        "equipamento_selecionado"
+        "declaracao_saber_nadar",
+        "nif_para_fatura"
       ],
       "consents": [
         "aceitacao_termos_e_condicoes",
         "aceitacao_politica_de_cancelamento",
+        "assinatura_termo_de_responsabilidade",
         "consentimento_tratamento_de_dados"
       ]
     },
@@ -311,7 +377,7 @@
       "admin_can_block_times": true
     },
 
-    "weather": {
+    "weather_integration": {
       "enabled": true,
       "admin_override": true,
       "allow_rescheduling": true,
@@ -323,12 +389,10 @@
       "online_payment": true,
       "currency": "EUR",
       "provider": "Stripe",
-      "payment_methods": [
-        "card",
-        "MB WAY",
-        "other_supported_local_methods"
-      ],
-      "payment_required_to_confirm_booking": true
+      "payment_methods": ["card", "MB WAY", "multibanco"],
+      "vat_included": true,
+      "vat_rate_percentage": 23,
+      "invoicing_integration": "Automatic invoice generation upon payment"
     },
 
     "confirmation": {
@@ -340,20 +404,16 @@
         "data",
         "hora",
         "participantes",
-        "localizacao",
-        "preco",
-        "instrucoes",
+        "localizacao_e_ponto_de_encontro",
+        "preco_e_fatura",
+        "instrucoes_o_que_levar",
         "politica_de_cancelamento"
       ]
     },
 
     "calendar": {
       "admin_dashboard": true,
-      "views": [
-        "day",
-        "week",
-        "month"
-      ],
+      "views": ["day", "week", "month"],
       "google_calendar_sync": true,
       "export_ical": true
     }
@@ -366,14 +426,13 @@
       "edit_booking",
       "cancel_booking",
       "block_availability",
-      "manage_equipment",
+      "manage_fleet_inventory",
       "manage_prices",
       "manage_activities",
       "manage_customers",
-      "view_revenue",
+      "view_revenue_reports",
       "send_customer_notifications"
     ],
-
     "booking_statuses": [
       "pending",
       "confirmed",
@@ -386,7 +445,7 @@
 
   "notifications": {
     "booking_confirmation": true,
-    "booking_reminder": true,
+    "booking_reminder_24h_before": true,
     "weather_alert": true,
     "cancellation_notification": true,
     "reschedule_notification": true,
@@ -394,18 +453,41 @@
   },
 
   "seo": {
-    "title": "TAGUS BLUE | SUP & Kayak em Oeiras",
-    "description": "Experimenta SUP e kayak no Porto de Recreio de Oeiras. Aulas, alugueres e experiências no mar para todos os níveis.",
-    "keywords": [
-      "SUP Oeiras",
-      "kayak Oeiras",
-      "aluguer kayak Oeiras",
-      "aluguer SUP Oeiras",
-      "stand up paddle Oeiras",
-      "atividades mar Oeiras",
-      "kayak Lisboa",
-      "SUP Lisboa"
-    ],
+    "default_meta": {
+      "title": "TAGUS BLUE | Kayak & SUP no Porto de Recreio de Oeiras e Tejo",
+      "description": "Explora o rio Tejo e a costa de Oeiras de kayak ou SUP. Aulas, alugueres e passeios guiados a partir do Porto de Recreio de Oeiras.",
+      "keywords": [
+        "kayak sup porto recreio de oeiras",
+        "kayak sup tejo",
+        "kayak tejo",
+        "sup tejo",
+        "aluguer kayak tejo",
+        "aluguer sup oeiras",
+        "passeio kayak tejo",
+        "stand up paddle oeiras",
+        "desportos aquaticos oeiras"
+      ]
+    },
+    "targeted_landing_keywords": {
+      "oeiras_harbor": "kayak sup porto recreio de oeiras",
+      "tejo_river": "kayak sup tejo",
+      "kayak_experience": "kayak tejo"
+    },
+    "structured_data": {
+      "schema_type": "SportsActivityLocation",
+      "name": "TAGUS BLUE - SUP & Kayak",
+      "geo_coordinates": {
+        "latitude": 38.6756,
+        "longitude": -9.3144
+      },
+      "area_served": [
+        "Porto de Recreio de Oeiras",
+        "Rio Tejo",
+        "Oeiras",
+        "Cascais",
+        "Lisboa"
+      ]
+    },
     "local_seo": true
   },
 
@@ -414,7 +496,7 @@
       "Termos e Condições",
       "Política de Privacidade",
       "Política de Cancelamento",
-      "Informação de Segurança"
+      "Informação de Segurança e Regras do Mar"
     ],
     "cookie_consent": true,
     "gdpr_compliant": true,

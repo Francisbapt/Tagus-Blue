@@ -14,6 +14,12 @@
       --text-color: #2C3E50;
     }
 
+    /* Corrige o Auto-Scroll para não tapar os títulos com o menu fixo */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px; 
+    }
+
     * { box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -35,6 +41,7 @@
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      height: 60px;
     }
     nav .logo { font-size: 1.4rem; font-weight: bold; color: var(--white); text-decoration: none; }
     nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 15px; }
@@ -86,7 +93,7 @@
     .card-content { padding: 20px; flex-grow: 1; }
     .card h3 { color: var(--ocean-blue); margin-top: 0; }
 
-    /* Estilo das FAQ's com Setinha e Escondidas por Omissão */
+    /* FAQ Expansíveis (Accordion) */
     .faq-container { margin-top: 20px; }
     .faq-item {
       background: var(--white);
@@ -97,9 +104,7 @@
       border: 1px solid #e2e8f0;
       transition: border-color 0.2s;
     }
-    .faq-item.active {
-      border-color: var(--ocean-blue);
-    }
+    .faq-item.active { border-color: var(--ocean-blue); }
     .faq-question {
       width: 100%;
       background: none;
@@ -114,11 +119,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: background-color 0.2s;
     }
     .faq-question:hover { background-color: #f8fafc; }
-    
-    /* Setinha (Chevron) */
     .faq-icon {
       font-size: 0.9rem;
       transition: transform 0.3s ease;
@@ -126,8 +128,6 @@
       display: inline-block;
       margin-left: 10px;
     }
-    
-    /* Resposta totalmente escondida */
     .faq-answer {
       max-height: 0;
       overflow: hidden;
@@ -136,14 +136,8 @@
       color: #4a5568;
       background-color: #fafafa;
     }
-
-    /* Estado Ativo (Quando expandido) */
-    .faq-item.active .faq-answer {
-      padding: 15px 20px 20px 20px;
-    }
-    .faq-item.active .faq-icon {
-      transform: rotate(180deg); /* Roda a setinha para cima */
-    }
+    .faq-item.active .faq-answer { padding: 15px 20px 20px 20px; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
 
     form input, form textarea {
       width: 100%;
@@ -159,20 +153,20 @@
 <body>
 
   <nav>
-    <a href="#" class="logo" id="nav-logo">TAGUS BLUE</a>
+    <a href="#home" class="logo" id="nav-logo">TAGUS BLUE</a>
     <ul id="nav-menu"></ul>
   </nav>
 
   <div class="container">
     
-    <!-- Hero Section -->
+    <!-- Secção 1: Home / Hero -->
     <section class="hero" id="home">
       <h1 id="hero-title">A carregar...</h1>
       <p id="hero-subtitle"></p>
       <a href="#contact" class="btn btn-primary" id="hero-cta">RESERVAR AGORA</a>
     </section>
 
-    <!-- Intro -->
+    <!-- Secção 2: Sobre nós -->
     <section class="card" id="about">
       <div class="card-content">
         <h2 id="intro-title" style="color: var(--ocean-blue);"></h2>
@@ -180,23 +174,23 @@
       </div>
     </section>
 
-    <!-- Atividades -->
+    <!-- Secção 3: Atividades -->
     <h2 class="section-title" id="activities">Atividades & Aulas</h2>
     <div class="grid" id="activities-grid"></div>
 
-    <!-- Alugueres -->
+    <!-- Secção 4: Alugueres -->
     <h2 class="section-title" id="rentals">Aluguer de Equipamento</h2>
     <div class="grid" id="rentals-grid"></div>
 
-    <!-- Experiências / Benefícios -->
+    <!-- Secção 5: Experiências -->
     <h2 class="section-title" id="experiences">Porquê a Tagus Blue?</h2>
     <div class="grid" id="benefits-grid"></div>
 
-    <!-- FAQ Expansível com Setinha -->
+    <!-- Secção 6: FAQ -->
     <h2 class="section-title" id="faq">Perguntas Frequentes (FAQ)</h2>
     <div class="faq-container" id="faq-list"></div>
 
-    <!-- Contactos -->
+    <!-- Secção 7: Contactos -->
     <h2 class="section-title" id="contact">Contactos & Reservas</h2>
     <div class="grid">
       <div class="card">
@@ -205,12 +199,12 @@
       <div class="card">
         <div class="card-content">
           <h3>Envie uma mensagem</h3>
-          <form id="contact-form">
-            <input type="text" placeholder="Nome" required>
-            <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Telefone">
-            <textarea rows="4" placeholder="Mensagem"></textarea>
-            <button type="button" class="btn btn-primary" onclick="alert('Mensagem enviada com sucesso!')">Enviar Mensagem</button>
+          <form id="contact-form" onsubmit="sendEmail(event)">
+            <input type="text" id="form-name" placeholder="Nome" required>
+            <input type="email" id="form-email" placeholder="Email" required>
+            <input type="tel" id="form-phone" placeholder="Telefone">
+            <textarea id="form-message" rows="4" placeholder="Mensagem" required></textarea>
+            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
           </form>
         </div>
       </div>
@@ -251,7 +245,7 @@
           document.getElementById('hero-cta').innerText = getPT(data.website.primary_cta.label);
         }
 
-        // Hero com Imagem de Fundo
+        // Hero
         document.getElementById('hero-title').innerText = getPT(pages.home.hero.headline);
         document.getElementById('hero-subtitle').innerText = getPT(pages.home.hero.subheadline);
         if (pages.home.hero.background_image) {
@@ -260,7 +254,7 @@
             `linear-gradient(rgba(0, 59, 92, 0.65), rgba(0, 59, 92, 0.65)), url('${bgImg}')`;
         }
 
-        // Intro
+        // Intro / About
         document.getElementById('intro-title').innerText = getPT(pages.home.intro.headline);
         document.getElementById('intro-text').innerText = getPT(pages.home.intro.text);
 
@@ -309,7 +303,7 @@
           `;
         });
 
-        // FAQ com Setinha ▼ e Resposta Oculta por Omissão
+        // FAQ
         const faqList = document.getElementById('faq-list');
         pages.faq.questions.forEach((q, index) => {
           faqList.innerHTML += `
@@ -336,7 +330,7 @@
       })
       .catch(err => console.error('Erro ao carregar o JSON:', err));
 
-    // Função JS atualizada para expandir/recolher suavemente
+    // Função FAQ Accordion
     function toggleFaq(index) {
       const item = document.getElementById(`faq-item-${index}`);
       const answer = document.getElementById(`faq-answer-${index}`);
@@ -346,9 +340,22 @@
         answer.style.maxHeight = "0px";
       } else {
         item.classList.add('active');
-        // Calcula a altura exata do texto interno para abrir perfeitamente
         answer.style.maxHeight = answer.scrollHeight + 35 + "px";
       }
+    }
+
+    // Função para enviar os dados do formulário diretamente para a aplicação de Email
+    function sendEmail(event) {
+      event.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const phone = document.getElementById('form-phone').value;
+      const message = document.getElementById('form-message').value;
+
+      const subject = encodeURIComponent(`Contacto pelo site - ${name}`);
+      const body = encodeURIComponent(`Nome: ${name}\nEmail: ${email}\nTelefone: ${phone}\n\nMensagem:\n${message}`);
+
+      window.location.href = `mailto:tagusbluesup@gmail.com?subject=${subject}&body=${body}`;
     }
   </script>
 

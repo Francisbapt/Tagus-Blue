@@ -262,15 +262,15 @@ html {
         document.getElementById('intro-title').innerText = getPT(pages.home.intro.headline);
         document.getElementById('intro-text').innerText = getPT(pages.home.intro.text);
 
-       // Atividades
+     // Atividades
         const actGrid = document.getElementById('activities-grid');
         pages.home.activities_preview.forEach(act => {
-          // Lê a imagem dinâmica do JSON para cada cartão individual
-          const bgImage = act.image || 'Experimentação.jpeg';
+          // Nome da imagem sem acentos (ex: experimentacao.jpeg)
+          const bgImage = act.image || 'experimentacao.jpeg';
 
           actGrid.innerHTML += `
             <div class="card" style="
-              background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${bgImage}');
+              background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('${encodeURI(bgImage)}');
               background-size: cover;
               background-position: center;
               color: var(--white);
